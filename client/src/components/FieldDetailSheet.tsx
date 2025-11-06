@@ -89,7 +89,7 @@ export default function FieldDetailSheet({
                 <div className="flex flex-col gap-1">
                   {nextAvailableSlots.map((slot) => (
                     <p key={slot.id} className="text-xs text-muted-foreground">
-                      {slot.date} в {slot.time} • {slot.availableSpots} мест • {slot.price} ₽
+                      {slot.date} в {slot.time} • {slot.availableSpots} мест
                     </p>
                   ))}
                 </div>

@@ -16,7 +16,6 @@ const generateTimeSlots = (dates: string[], times: string[]) => {
         time,
         availableSpots: Math.floor(Math.random() * 10) + 1,
         totalSpots: 10,
-        price: Math.floor(Math.random() * 500) + 500,
       });
     }
   }

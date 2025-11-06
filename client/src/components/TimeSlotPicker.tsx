@@ -50,11 +50,8 @@ export default function TimeSlotPicker({
                 </span>
                 <div className="flex items-center gap-1 text-xs text-muted-foreground">
                   <Users className="w-3 h-3" />
-                  <span>{slot.availableSpots}/{slot.totalSpots}</span>
+                  <span>{slot.availableSpots}/{slot.totalSpots} мест</span>
                 </div>
-                <span className="text-xs font-medium text-foreground">
-                  {slot.price} ₽
-                </span>
               </div>
             </Card>
           );

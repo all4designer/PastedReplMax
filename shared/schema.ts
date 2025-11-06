@@ -6,7 +6,6 @@ export const timeSlotSchema = z.object({
   time: z.string(),
   availableSpots: z.number(),
   totalSpots: z.number(),
-  price: z.number(),
 });
 
 export const sportFieldSchema = z.object({

@@ -32,7 +32,6 @@ export default function BookingInterface({
         field: field.name,
         date: selectedDate,
         time: selectedSlot.time,
-        price: selectedSlot.price,
       });
       onClose();
     }
@@ -46,12 +45,14 @@ export default function BookingInterface({
         data-testid="booking-overlay"
       />
       <div
-        className="fixed bottom-0 left-0 right-0 bg-background rounded-t-3xl shadow-xl z-50 transform transition-transform duration-300 max-w-lg mx-auto"
-        style={{ maxHeight: '90vh' }}
+        className="fixed inset-0 z-50 flex items-end justify-center max-w-lg mx-auto"
         data-testid="booking-interface"
       >
-        <div className="flex flex-col h-full">
-          <div className="flex items-center justify-between p-4 border-b border-border">
+        <div
+          className="w-full bg-background rounded-t-3xl shadow-xl transform transition-transform duration-300 flex flex-col"
+          style={{ maxHeight: '90vh' }}
+        >
+          <div className="flex items-center justify-between p-4 border-b border-border flex-shrink-0">
             <h2 className="text-lg font-bold">Бронирование</h2>
             <Button
               size="icon"
@@ -63,7 +64,7 @@ export default function BookingInterface({
             </Button>
           </div>
 
-          <div className="overflow-y-auto flex-1">
+          <div className="flex-1 overflow-y-auto">
             <div className="p-4 border-b border-border">
               <h3 className="text-sm font-medium text-muted-foreground mb-1">
                 Площадка
@@ -86,23 +87,19 @@ export default function BookingInterface({
                 onSelectSlot={setSelectedSlot}
               />
             )}
-          </div>
 
-          {selectedSlot && (
-            <div className="p-4 border-t border-border bg-card/50">
-              <div className="flex justify-between items-center mb-3">
-                <span className="text-sm text-muted-foreground">Итого:</span>
-                <span className="text-xl font-bold">{selectedSlot.price} ₽</span>
+            {selectedSlot && (
+              <div className="p-4">
+                <Button
+                  className="w-full"
+                  onClick={handleConfirmBooking}
+                  data-testid="button-confirm-booking"
+                >
+                  Подтвердить бронирование
+                </Button>
               </div>
-              <Button
-                className="w-full"
-                onClick={handleConfirmBooking}
-                data-testid="button-confirm-booking"
-              >
-                Подтвердить бронирование
-              </Button>
-            </div>
-          )}
+            )}
+          </div>
         </div>
       </div>
     </>

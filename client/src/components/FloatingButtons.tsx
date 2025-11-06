@@ -1,5 +1,4 @@
 import { Filter, User } from "lucide-react";
-import { Button } from "@/components/ui/button";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 
 interface FloatingButtonsProps {
@@ -19,26 +18,24 @@ export default function FloatingButtons({
     <>
       <button
         onClick={onProfileClick}
-        className="fixed top-4 left-4 z-50 hover-elevate active-elevate-2 rounded-full bg-background/80 backdrop-blur-md p-1 border border-border shadow-lg"
+        className="fixed top-4 left-4 z-50 hover-elevate active-elevate-2 rounded-full bg-background/90 backdrop-blur-md p-1 border border-border shadow-lg"
         data-testid="button-profile-floating"
       >
-        <Avatar className="w-10 h-10">
+        <Avatar className="w-12 h-12">
           <AvatarImage src={userAvatar} alt={userName} />
           <AvatarFallback>
-            <User className="w-5 h-5" />
+            <User className="w-6 h-6" />
           </AvatarFallback>
         </Avatar>
       </button>
 
-      <Button
-        size="icon"
-        variant="secondary"
+      <button
         onClick={onFilterClick}
-        className="fixed top-4 right-4 z-50 bg-background/80 backdrop-blur-md border border-border shadow-lg"
+        className="fixed top-4 right-4 z-50 hover-elevate active-elevate-2 rounded-full w-14 h-14 flex items-center justify-center bg-background/90 backdrop-blur-md border border-border shadow-lg"
         data-testid="button-filter-floating"
       >
-        <Filter className="w-5 h-5" />
-      </Button>
+        <Filter className="w-6 h-6" />
+      </button>
     </>
   );
 }
