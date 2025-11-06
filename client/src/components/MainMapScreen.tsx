@@ -61,15 +61,13 @@ export default function MainMapScreen({
         />
       </div>
 
-      <Button
+      <button
         onClick={() => setShowFieldsList(true)}
-        className="fixed bottom-6 left-1/2 -translate-x-1/2 z-30 shadow-xl"
-        size="lg"
+        className="fixed bottom-6 left-1/2 -translate-x-1/2 z-30 hover-elevate active-elevate-2 rounded-full w-14 h-14 flex items-center justify-center bg-background/90 backdrop-blur-md border border-border shadow-lg"
         data-testid="button-open-fields-list"
       >
-        <List className="w-5 h-5 mr-2" />
-        Список
-      </Button>
+        <List className="w-6 h-6" />
+      </button>
 
       <FieldsListSheet
         fields={filteredFields}
