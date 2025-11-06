@@ -7,13 +7,23 @@ interface FieldDetailSheetProps {
   field: SportField | null;
   isOpen: boolean;
   onClose: () => void;
+  onBookClick: () => void;
 }
 
-export default function FieldDetailSheet({ field, isOpen, onClose }: FieldDetailSheetProps) {
+export default function FieldDetailSheet({
+  field,
+  isOpen,
+  onClose,
+  onBookClick,
+}: FieldDetailSheetProps) {
   if (!isOpen || !field) return null;
 
   const fullStars = Math.floor(field.rating);
   const hasHalfStar = field.rating % 1 >= 0.5;
+
+  const nextAvailableSlots = field.timeSlots
+    .filter(slot => slot.availableSpots > 0)
+    .slice(0, 3);
 
   return (
     <>
@@ -73,17 +83,24 @@ export default function FieldDetailSheet({ field, isOpen, onClose }: FieldDetail
               {field.description}
             </p>
 
-            <Card className="p-3 mb-6 bg-accent/50">
-              <p className="text-sm font-medium" data-testid="text-status">
-                {field.status}
-              </p>
-            </Card>
+            {nextAvailableSlots.length > 0 && (
+              <Card className="p-3 mb-6 bg-accent/30">
+                <p className="text-sm font-medium mb-2">Ближайшие слоты:</p>
+                <div className="flex flex-col gap-1">
+                  {nextAvailableSlots.map((slot) => (
+                    <p key={slot.id} className="text-xs text-muted-foreground">
+                      {slot.date} в {slot.time} • {slot.availableSpots} мест • {slot.price} ₽
+                    </p>
+                  ))}
+                </div>
+              </Card>
+            )}
 
             <div className="flex gap-3">
               <Button
                 className="flex-1"
                 data-testid="button-book"
-                onClick={() => console.log('Booking:', field.name)}
+                onClick={onBookClick}
               >
                 Записаться
               </Button>

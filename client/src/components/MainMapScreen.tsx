@@ -1,8 +1,9 @@
 import { useState } from "react";
-import AppHeader from "./AppHeader";
-import WeatherCard from "./WeatherCard";
+import FloatingButtons from "./FloatingButtons";
+import VerticalWeatherWidget from "./VerticalWeatherWidget";
 import MapPlaceholder from "./MapPlaceholder";
 import FieldDetailSheet from "./FieldDetailSheet";
+import BookingInterface from "./BookingInterface";
 import type { SportField, WeatherDay, UserProfile } from "@shared/schema";
 
 interface MainMapScreenProps {
@@ -23,27 +24,31 @@ export default function MainMapScreen({
   selectedTypes,
 }: MainMapScreenProps) {
   const [selectedField, setSelectedField] = useState<SportField | null>(null);
+  const [showBooking, setShowBooking] = useState(false);
 
   const filteredFields = selectedTypes.length > 0
     ? fields.filter(f => selectedTypes.includes(f.sportType))
     : fields;
 
+  const handleBookClick = () => {
+    setShowBooking(true);
+  };
+
+  const handleCloseBooking = () => {
+    setShowBooking(false);
+    setSelectedField(null);
+  };
+
   return (
     <div className="flex flex-col h-full bg-background">
-      <AppHeader
+      <FloatingButtons
         userAvatar={userProfile.avatar}
         userName={userProfile.name}
         onProfileClick={onProfileClick}
         onFilterClick={onFilterClick}
       />
 
-      <div className="overflow-x-auto px-4 py-3 border-b border-border">
-        <div className="flex gap-3" data-testid="weather-carousel">
-          {weather.map((day) => (
-            <WeatherCard key={day.day} weather={day} />
-          ))}
-        </div>
-      </div>
+      <VerticalWeatherWidget weather={weather} />
 
       <div className="flex-1 relative" data-testid="map-container">
         <MapPlaceholder
@@ -54,9 +59,18 @@ export default function MainMapScreen({
 
       <FieldDetailSheet
         field={selectedField}
-        isOpen={selectedField !== null}
+        isOpen={selectedField !== null && !showBooking}
         onClose={() => setSelectedField(null)}
+        onBookClick={handleBookClick}
       />
+
+      {selectedField && (
+        <BookingInterface
+          field={selectedField}
+          isOpen={showBooking}
+          onClose={handleCloseBooking}
+        />
+      )}
     </div>
   );
 }

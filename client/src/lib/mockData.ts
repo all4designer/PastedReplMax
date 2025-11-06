@@ -5,6 +5,36 @@ import tennisCourtImage from "@assets/generated_images/Tennis_court_aerial_view_
 import volleyballCourtImage from "@assets/generated_images/Volleyball_sand_court_view_96606708.png";
 import futsalCourtImage from "@assets/generated_images/Indoor_futsal_court_view_bf1f3543.png";
 
+const generateTimeSlots = (dates: string[], times: string[]) => {
+  let id = 1;
+  const slots = [];
+  for (const date of dates) {
+    for (const time of times) {
+      slots.push({
+        id: id++,
+        date,
+        time,
+        availableSpots: Math.floor(Math.random() * 10) + 1,
+        totalSpots: 10,
+        price: Math.floor(Math.random() * 500) + 500,
+      });
+    }
+  }
+  return slots;
+};
+
+const nextDays = [
+  "2025-11-10",
+  "2025-11-11",
+  "2025-11-12",
+  "2025-11-13",
+  "2025-11-14",
+  "2025-11-15",
+  "2025-11-16",
+];
+
+const typicalTimes = ["10:00", "12:00", "14:00", "16:00", "18:00", "20:00"];
+
 export const mockSportsFields: SportField[] = [
   {
     id: 1,
@@ -15,8 +45,7 @@ export const mockSportsFields: SportField[] = [
     image: footballFieldImage,
     description: "Профессиональное покрытие, отличное освещение",
     sportType: "football",
-    status: "Сегодня 16:00, 5 человек",
-    bookings: [{ date: "2025-11-10", time: "16:00", players: 5 }],
+    timeSlots: generateTimeSlots(nextDays, typicalTimes),
   },
   {
     id: 2,
@@ -27,8 +56,7 @@ export const mockSportsFields: SportField[] = [
     image: basketballCourtImage,
     description: "Открытая площадка с новым покрытием",
     sportType: "basketball",
-    status: "Сегодня 18:00, 8 человек",
-    bookings: [{ date: "2025-11-10", time: "18:00", players: 8 }],
+    timeSlots: generateTimeSlots(nextDays, typicalTimes),
   },
   {
     id: 3,
@@ -39,8 +67,7 @@ export const mockSportsFields: SportField[] = [
     image: tennisCourtImage,
     description: "Хард покрытие, профессиональное обслуживание",
     sportType: "tennis",
-    status: "Сегодня 14:00, 4 человека",
-    bookings: [{ date: "2025-11-10", time: "14:00", players: 4 }],
+    timeSlots: generateTimeSlots(nextDays, typicalTimes),
   },
   {
     id: 4,
@@ -51,8 +78,7 @@ export const mockSportsFields: SportField[] = [
     image: volleyballCourtImage,
     description: "Песчаное покрытие, отличный вид",
     sportType: "volleyball",
-    status: "Сегодня 17:00, 6 человек",
-    bookings: [{ date: "2025-11-10", time: "17:00", players: 6 }],
+    timeSlots: generateTimeSlots(nextDays, typicalTimes),
   },
   {
     id: 5,
@@ -63,8 +89,7 @@ export const mockSportsFields: SportField[] = [
     image: futsalCourtImage,
     description: "Крытый зал, климат-контроль, раздевалки",
     sportType: "futsal",
-    status: "Сегодня 19:00, 10 человек",
-    bookings: [{ date: "2025-11-10", time: "19:00", players: 10 }],
+    timeSlots: generateTimeSlots(nextDays, typicalTimes),
   },
 ];
 
@@ -104,9 +129,9 @@ export const mockUserProfile: UserProfile = {
 };
 
 export const mockWeather: WeatherDay[] = [
-  { day: "Пн", temp: "+12°C", icon: "sun" },
-  { day: "Вт", temp: "+10°C", icon: "cloud" },
-  { day: "Ср", temp: "+8°C", icon: "rain" },
-  { day: "Чт", temp: "+11°C", icon: "cloud" },
-  { day: "Пт", temp: "+13°C", icon: "sun" },
+  { day: "Пн", temp: "+12°", icon: "sun" },
+  { day: "Вт", temp: "+10°", icon: "cloud" },
+  { day: "Ср", temp: "+8°", icon: "rain" },
+  { day: "Чт", temp: "+11°", icon: "cloud" },
+  { day: "Пт", temp: "+13°", icon: "sun" },
 ];
