@@ -26,7 +26,7 @@ export default function ProfileScreen({ profile, onBack }: ProfileScreenProps) {
 
       <div className="flex-1 overflow-y-auto">
         <div className="p-6 flex flex-col items-center border-b border-border">
-          <Avatar className="w-18 h-18 mb-3">
+          <Avatar className="w-20 h-20 mb-3">
             <AvatarImage src={profile.avatar} alt={profile.name} />
             <AvatarFallback>
               <User className="w-8 h-8" />

@@ -4,6 +4,7 @@ import VerticalWeatherWidget from "./VerticalWeatherWidget";
 import MapPlaceholder from "./MapPlaceholder";
 import FieldDetailSheet from "./FieldDetailSheet";
 import BookingInterface from "./BookingInterface";
+import BottomFieldsList from "./BottomFieldsList";
 import type { SportField, WeatherDay, UserProfile } from "@shared/schema";
 
 interface MainMapScreenProps {
@@ -56,6 +57,11 @@ export default function MainMapScreen({
           onMarkerClick={setSelectedField}
         />
       </div>
+
+      <BottomFieldsList
+        fields={filteredFields}
+        onFieldClick={setSelectedField}
+      />
 
       <FieldDetailSheet
         field={selectedField}
