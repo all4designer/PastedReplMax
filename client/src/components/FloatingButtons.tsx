@@ -18,7 +18,7 @@ export default function FloatingButtons({
     <>
       <button
         onClick={onProfileClick}
-        className="fixed top-4 left-4 z-50 hover-elevate active-elevate-2 rounded-full bg-background/90 backdrop-blur-md p-1 border border-border shadow-lg"
+        className="fixed top-4 left-4 z-50 hover-elevate active-elevate-2 rounded-full bg-background/90 backdrop-blur-md border border-border shadow-lg w-14 h-14 p-0 flex items-center justify-center"
         data-testid="button-profile-floating"
       >
         <Avatar className="w-12 h-12">
