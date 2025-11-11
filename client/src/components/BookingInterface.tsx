@@ -74,18 +74,48 @@ export default function BookingInterface({
               </p>
             </div>
 
-            <CalendarPicker
-              selectedDate={selectedDate}
-              onSelectDate={setSelectedDate}
-              availableDates={availableDates}
-            />
+            {!selectedDate && (
+              <CalendarPicker
+                selectedDate={selectedDate}
+                onSelectDate={setSelectedDate}
+                availableDates={availableDates}
+              />
+            )}
 
             {selectedDate && (
-              <TimeSlotPicker
-                slots={slotsForDate}
-                selectedSlot={selectedSlot}
-                onSelectSlot={setSelectedSlot}
-              />
+              <>
+                <div className="p-4 border-b border-border flex items-center justify-between">
+                  <div>
+                    <h3 className="text-sm font-medium text-muted-foreground mb-1">
+                      Выбранная дата
+                    </h3>
+                    <p className="font-semibold" data-testid="text-selected-date">
+                      {new Date(selectedDate).toLocaleDateString('ru-RU', {
+                        day: 'numeric',
+                        month: 'long',
+                        year: 'numeric',
+                      })}
+                    </p>
+                  </div>
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    onClick={() => {
+                      setSelectedDate(null);
+                      setSelectedSlot(null);
+                    }}
+                    data-testid="button-change-date"
+                  >
+                    Изменить
+                  </Button>
+                </div>
+
+                <TimeSlotPicker
+                  slots={slotsForDate}
+                  selectedSlot={selectedSlot}
+                  onSelectSlot={setSelectedSlot}
+                />
+              </>
             )}
 
             {selectedSlot && (

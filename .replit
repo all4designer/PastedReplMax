@@ -15,8 +15,8 @@ localPort = 5000
 externalPort = 80
 
 [[ports]]
-localPort = 39017
-externalPort = 3001
+localPort = 40191
+externalPort = 3000
 
 [env]
 PORT = "5000"
@@ -44,3 +44,4 @@ waitForPort = 5000
 
 [agent]
 integrations = ["javascript_mem_db:1.0.0"]
+expertMode = true
